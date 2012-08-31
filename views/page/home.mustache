@@ -1,0 +1,27 @@
+<div class="container">
+
+  <div class="entry">
+    <div class="page-header">
+      <h1>{{page.title}}</h1>
+    </div>
+    {{{page.body}}}
+  </div>
+
+  <div class="entry">
+    <h2>Latest blog posts</h2>
+    <table class="table table-striped latest-posts">
+      <tbody>
+      {{#posts}}
+        <tr>
+          <td>
+            <!-- <i class="icon-circle"></i> -->
+            <a href="{{url}}">{{title}}</a>
+            - {{dateshort}}
+          </td>
+        </tr>
+      {{/posts}}
+      </tbody>
+    </table>
+    <a class="btn" href="/blog">Read the blog »</a>
+  </div>
+</div>

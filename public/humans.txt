@@ -1,0 +1,7 @@
+# The humans responsible & technology colophon
+# humanstxt.org
+
+
+# TEAM
+
+    FIRSTNAME LASTNAME -- POSITION -- http://twitter.com/USERNAME

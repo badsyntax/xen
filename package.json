@@ -2,10 +2,12 @@
   "name": "NodeSite",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node app"
+  },
   "dependencies": {
-    "express": ">= 3.0",
-    "mustache": ">= 0.6.0",
-    "stache": ">= 0.1.0",
-    "nodemailer": ">= 0.3.22"
+    "express": "3.0",
+    "hbs": "1.0.2",
+    "nodemailer": "0.3.22"
   }
 }
