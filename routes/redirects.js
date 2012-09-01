@@ -1,8 +1,8 @@
 module.exports = exports = [
-    /*
-    { 
-      'from': '/uri/segment': 
-      'to': '/uri/segment/new'
-    }
-    */
-  ];
+  /*
+  { 
+    'from': '/uri/1',
+    'to': '/uri/2'
+  }
+  */
+];
