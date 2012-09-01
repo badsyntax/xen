@@ -1,23 +1,16 @@
-# xen
+# Xen Site
 
-A node site generator
+A node & express site generator.
 
 ## Getting Started
-Install the module with: `npm install xen`
-
-```javascript
-var xen = require('xen');
-xen.awesome(); // "awesome"
-```
+* Read the [installation page](https://github.com/badsyntax/xen/wiki/Installation) to get the project installed.
+* Read the [running the app page](https://github.com/badsyntax/xen/wiki/Runnng-the-App) to run the application.
 
 ## Documentation
-_(Coming soon)_
-
-## Examples
-_(Coming soon)_
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt](https://github.com/cowboy/grunt).
+* [Installation](https://github.com/badsyntax/xen/wiki/Installation)
+* [Grunt Tasks](https://github.com/badsyntax/xen/wiki/Grunt-Tasks)
+* [Adding Content](https://github.com/badsyntax/xen/wiki/Adding-Content)
+* [Running the App](https://github.com/badsyntax/xen/wiki/Runnng-the-App)
 
 ## Release History
 _(Nothing yet)_
