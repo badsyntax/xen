@@ -1,4 +1,4 @@
-var nodesite = require('../lib/nodesite.js');
+var xen = require('../lib/xen.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -28,7 +28,7 @@ exports['awesome'] = {
   'no args': function(test) {
     test.expect(1);
     // tests here
-    test.equal(nodesite.awesome(), 'awesome', 'should be awesome.');
+    test.equal(xen.awesome(), 'awesome', 'should be awesome.');
     test.done();
   }
 };

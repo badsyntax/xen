@@ -75,9 +75,8 @@ PageController.prototype.after = function() {
   });
 
   this.view.navigation = new View('fragments/navigation', { 
-    siteConfig: siteConfig,
     pages: this.getNavPages(page.uri),
-    assetsDomain: assetsDomain
+    siteConfig: siteConfig
   }).render();
   
   this.view.breadcrumbs = new View('fragments/breadcrumbs', { 

@@ -1,5 +1,5 @@
 {
-  "name": "NodeSite",
+  "name": "xen",
   "description": "A simple node site generator",
   "author": "Richard Willis <richard@badsyntax.co>",
   "version": "0.1.0",
@@ -15,6 +15,6 @@
   },
   "repository" : {
     "type" : "git",
-    "url" : "https://github.com/badsyntax/nodesite.git"
+    "url" : "https://github.com/badsyntax/xen.git"
   } 
 }

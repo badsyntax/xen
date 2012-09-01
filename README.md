@@ -1,13 +1,13 @@
-# nodesite
+# xen
 
 A node site generator
 
 ## Getting Started
-Install the module with: `npm install nodesite`
+Install the module with: `npm install xen`
 
 ```javascript
-var nodesite = require('nodesite');
-nodesite.awesome(); // "awesome"
+var xen = require('xen');
+xen.awesome(); // "awesome"
 ```
 
 ## Documentation
