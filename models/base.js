@@ -1,3 +1,5 @@
+var DataStore = require('../lib/datastore');
+
 function Base(data) {
   this.setData(data);  
 }
