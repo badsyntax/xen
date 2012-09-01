@@ -1,7 +1,6 @@
-<script src="{{assetsDomain}}js/libs.js"></script>
-<script src="{{assetsDomain}}js/app.js"></script>
+{{{scripts}}}
 <script>
-  new App.Controllers.{{controller}}({
-    trackPage: {{config.trackPage}}
+  new App.Controllers.{{controller}}({ {{#config}}
+    {{key}}: {{{val}}}{{#notLast}},{{/notLast}}{{/config}}
   });
 </script>

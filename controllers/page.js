@@ -2,21 +2,22 @@ var DataStore = require('../lib/datastore');
 var PageModel = require('../models/page');
 var BaseController = require('./base');
 var View = require('../lib/view');
+var Assets = require('../lib/assets');
+var Theme = require('../lib/theme');
+var siteConfig = require('../config/site');
+var themeConfig = require('../themes/' + siteConfig.theme + '/config');
 
 function PageController() { 
-
   this.breadcrumbs = this.breadcrumbs || [{
     url: '/',
     title: 'Home'
   }];
-
   BaseController.apply(this, arguments); 
 };
+
 require('util').inherits(PageController, BaseController);
 
-PageController.prototype.actionIndex = function() {
-  return true;
-};
+PageController.prototype.actionIndex = function() {};
 
 PageController.prototype.getPage = function() {
 
@@ -38,7 +39,6 @@ PageController.prototype.getPage = function() {
 };
 
 PageController.prototype.getNavPages = function(uri) {
-
   return new DataStore('pages').where(function(page){
     return !!page.showInNav;
   }).find().map(function(data){
@@ -58,9 +58,15 @@ PageController.prototype.after = function() {
     return;
   }
 
-  var assetsDomain = true || this.app.address().address === '127.0.0.1' ? '/' : '//assets.badsyntax.co/';
-  var controller = this.req.route.controller.charAt(0).toUpperCase() + this.req.route.controller.slice(1);
-  var trackPage = true || this.app.address().address !== '127.0.0.1';
+  var isLocal = true || this.app.address().address === '127.0.0.1';
+  var assetsDomain = '/';
+  var trackPage = true || !isLocal;
+  var controller = this.req.route.controller;
+  controller = controller.charAt(0).toUpperCase() + controller.slice(1);
+
+  Theme.setConfig('script', {
+    trackPage: trackPage
+  });
 
   this.breadcrumbs.push({
     uri: this.req.url,
@@ -69,6 +75,7 @@ PageController.prototype.after = function() {
   });
 
   this.view.navigation = new View('fragments/navigation', { 
+    siteConfig: siteConfig,
     pages: this.getNavPages(page.uri),
     assetsDomain: assetsDomain
   }).render();
@@ -78,16 +85,15 @@ PageController.prototype.after = function() {
   }).render();
 
   this.view.head = new View('fragments/head', { 
-    assetsDomain: assetsDomain,
+    siteConfig: siteConfig,
+    styles: new Assets('style').render(),
     page: page
   }).render();
 
   this.view.scripts = new View('fragments/scripts', {
-    assetsDomain: assetsDomain,
+    scripts: new Assets('script').render(),
     controller: controller,
-    config: {
-      trackPage: trackPage
-    }
+    config: Theme.getConfigAsArray('script')
   }).render();
 
   this.view.page = page;

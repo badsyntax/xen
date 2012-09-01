@@ -1,6 +1,9 @@
 var Blog = require('../lib/blog');
 var View = require('../lib/view');
+var Theme = require('../lib/theme');
 var PageController = require('./page');
+var siteConfig = require('../config/site');
+var themeConfig = require('../themes/' + siteConfig.theme + '/config');
 
 function BlogController() { 
   PageController.apply(this, arguments);
@@ -19,6 +22,10 @@ BlogController.prototype.actionIndex = function() {
   this.view.tags = tags;
 
   this.view.pagination = this.renderPagination(blog.pagination);
+
+  Theme.setConfig('script', {
+    twitterUserName: themeConfig.modules.blog.twitterFeed.username
+  });
 };
 
 // Filter by tag

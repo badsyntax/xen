@@ -2,12 +2,12 @@ var express = require('express');
 var router = require('./lib/router');
 var http = require('http');
 var path = require('path');
-
 var app = express();
+var config = require('./config/site');
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/themes/' + config.theme + '/views');
   app.set('view engine', 'hbs');
   app.use(express.favicon());
   app.use(express.logger('dev'));
@@ -15,6 +15,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/themes', express.static(path.join(__dirname, 'themes/')));
 });
 
 app.configure('development', function(){
