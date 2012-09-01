@@ -11,9 +11,6 @@ A node & express site generator.
 * [Grunt Tasks](https://github.com/badsyntax/xen/wiki/Grunt-Tasks)
 * [Adding Content](https://github.com/badsyntax/xen/wiki/Adding-Content)
 
-## Examples
-_(Coming soon)_
-
 ## Release History
 _(Nothing yet)_
 
