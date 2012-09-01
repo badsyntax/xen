@@ -22,6 +22,9 @@ module.exports = function(grunt) {
         'test/**/*.js'
       ]
     },
+    xen: {
+
+    },
     lint: {
       files: [
         'grunt.js', 
@@ -73,6 +76,8 @@ module.exports = function(grunt) {
       }
     }
   });
+
+  grunt.loadTasks('tasks');
 
   grunt.registerTask('default', 'lint cssmin min');
 };

@@ -13,6 +13,7 @@
     "hbs": "1.0.2",
     "nodemailer": "0.3.22"
   },
+  "main": "tasks/xen",
   "repository" : {
     "type" : "git",
     "url" : "https://github.com/badsyntax/xen.git"
