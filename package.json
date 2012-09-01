@@ -6,6 +6,7 @@
     "start": "node app"
   },
   "dependencies": {
+    "grunt-yui-compressor": "0.1.1",
     "express": "3.0",
     "hbs": "1.0.2",
     "nodemailer": "0.3.22"

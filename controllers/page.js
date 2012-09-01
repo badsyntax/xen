@@ -84,14 +84,16 @@ PageController.prototype.after = function() {
     breadcrumbs: this.breadcrumbs
   }).render();
 
+  var assets = new Assets(this.app);
+
   this.view.head = new View('fragments/head', { 
     siteConfig: siteConfig,
-    styles: new Assets('style').render(),
+    styles: assets.render('style'),
     page: page
   }).render();
 
   this.view.scripts = new View('fragments/scripts', {
-    scripts: new Assets('script').render(),
+    scripts: assets.render('script'),
     controller: controller,
     config: Theme.getConfigAsStringArray('script')
   }).render();

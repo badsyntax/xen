@@ -13,9 +13,9 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
-  app.use('/themes', express.static(path.join(__dirname, 'themes/')));
+  app.use('/themes', express.static(path.join(__dirname, 'themes')));
+  app.use(app.router);
 });
 
 app.configure('development', function(){
@@ -25,5 +25,5 @@ app.configure('development', function(){
 router.setup(app);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+  console.log("Express server listening on port " + app.get('port') + ' in ' + app.get('env') + ' mode');
 });

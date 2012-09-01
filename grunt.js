@@ -1,4 +1,19 @@
+var siteConfig = require('./config/site');
+var themeConfig = require('./themes/' + siteConfig.theme + '/config');
+
+var scripts = [];
+themeConfig.assets.script.forEach(function(script){
+  scripts.push('themes/' + siteConfig.theme + '/public/' + script);
+});
+
+var styles = [];
+themeConfig.assets.style.forEach(function(style){
+  styles.push('themes/' + siteConfig.theme + '/public/' + style);
+});
+
 module.exports = function(grunt) {
+
+  grunt.loadNpmTasks('grunt-yui-compressor');
 
   grunt.initConfig({
     pkg: '<json:package.json>',
@@ -20,27 +35,15 @@ module.exports = function(grunt) {
         'public/js/Controllers/*.js'
       ]
     },
-    concat: {
+    cssmin: {
       dist: {
-        src: [
-          'public/src/css/bootstrap.css', 
-          'public/src/css/style.css'
-        ],
-        dest: 'public/css/style.css'
+        src: styles,
+        dest: 'public/css/app.min.css'
       }
     },
     min: {
       dist: {
-        src: [
-          'public/src/js/lib/jquery.js',
-          'public/src/js/lib/underscore.js',
-          'public/src/js/lib/prettify.js',
-          'public/src/js/lib/bootstrap.js',
-          'public/src/js/App.js',
-          'public/src/js/App.Config.js',
-          'public/src/js/App.Util.js',
-          'public/src/js/Controllers/*.js'
-        ],
+        src: scripts,
         dest: 'public/js/app.min.js'
       }
     },
@@ -71,5 +74,5 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', 'lint concat min');
+  grunt.registerTask('default', 'lint cssmin min');
 };
