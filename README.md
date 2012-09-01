@@ -1,17 +1,13 @@
-# xen
+# Xen Site
 
-A node site generator
+A node & express site generator.
 
 ## Getting Started
-Install the module with: `npm install xen`
-
-```javascript
-var xen = require('xen');
-xen.awesome(); // "awesome"
-```
+* Read the [installation page](https://github.com/badsyntax/xen/wiki/Installation) to get the project installed.
+* Run the site: `sudo node app.js`
 
 ## Documentation
-_(Coming soon)_
+* [Installation](https://github.com/badsyntax/xen/wiki/Installation)
 
 ## Examples
 _(Coming soon)_
