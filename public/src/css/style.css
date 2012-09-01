@@ -1,0 +1,181 @@
+html, body {
+  background: #EEE;
+}
+h1 {
+  font-size: 26px;
+}
+h2 {
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 12px;
+}
+h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.page-header {
+  margin: 8px 0 16px 0;
+  padding-bottom: 10px;
+}
+.navbar .brand {
+  color: #FFF;
+} 
+.entry {
+  border: 1px solid #DDD;
+  background: #FFF;
+  padding: 10px 20px 20px 20px;
+  -webkit-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
+}
+.navbar .brand {
+  padding: 10px 20px;
+}
+.breadcrumb {
+  background: #FFF;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .15);
+}
+.posts h2 {
+  border-bottom: 1px solid #E4E4E4;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+}
+.entry footer section {
+  background: #F1F1F1;
+  padding: 4px;
+  border-radius: 2px;
+  margin-bottom: 6px;
+}
+.posts footer section:last-child {
+  margin-bottom: 0;
+}
+.posts footer section a:after {
+  content: ",";
+}
+.posts footer section a:last-child:after {
+  content: "";
+}
+.pagination a {
+  background: #FFF;
+}
+.container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+  max-width: 940px;
+}
+.well {
+  background: #FFF;
+}
+.social-icons, .social-icons li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.social-icons {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.social-icons li {
+  float: left;
+  margin-right: 5px;
+}
+.social-icons li a {
+  display: block;
+}
+.icon-social {
+  width: 24px;
+  height: 24px;
+  text-indent: -99999px;
+  overflow: hidden;
+}
+.icon-email {
+  background: url(/img/email-24x24.png);
+}
+.icon-linkedin {
+  background: url(/img/linkedin-24x24.png);
+}
+.icon-coderwall {
+  background: url(/img/coderwall-24x24.png);
+}
+.icon-stackoverflow {
+  background: url(/img/stackoverflow-24x24.png);
+}
+.icon-stackoverflow-careers {
+  background: url(/img/stackoverflow-24x24.png);
+}
+.icon-forrst {
+  background: url(/img/forrst-24x24.png);
+}
+.icon-github {
+  background: url(/img/github-24x24.png);
+}
+.icon-twitter {
+  background: url(/img/twitter-24x24.png);
+}
+.icon-googleplus {
+  background: url(/img/google+-24x24.png);
+}
+
+/* Contact page */
+#message {
+  width: 100%;
+}
+
+/* Blog */
+.well {
+  border: 1px solid #ddd;
+}
+#disqus_thread {
+  text-align: center;
+}
+#disqus_thread a .icon-comment {
+  margin-top: 2px;
+}
+.pagination {
+  margin-bottom: 20px;
+}
+
+/* Latest blog posts */
+.latest-posts td {
+  padding-left: 0;
+}
+
+/* Blog search form */
+.blog-search input {
+  width: 120px;
+}
+
+#latest-tweets {
+  display: none;
+}
+
+#latest-tweets li {
+  border-bottom: 1px solid #ddd;
+  font-size: .9em;
+}
+#latest-tweets li:last-child, #latest-tweets li.nav-header {
+  border: 0;
+}
+
+body {
+  padding-top: 60px;
+  padding-bottom: 0;
+}
+@media (max-width: 979px) {
+  body { 
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  
+  body {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .navbar-fixed-top, 
+  .navbar-fixed-bottom {
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+}

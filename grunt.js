@@ -4,10 +4,44 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: '<json:package.json>',
     test: {
-      files: ['test/**/*.js']
+      files: [
+        'test/**/*.js'
+      ]
     },
     lint: {
-      files: ['grunt.js', 'lib/**/*.js', 'test/**/*.js']
+      files: [
+        'grunt.js', 
+        'lib/**/*.js', 
+        'test/**/*.js', 
+        'public/js/App.js',
+        'public/js/App.Config.js',
+        'public/js/App.Util.js',
+        'public/js/Controllers/*.js'
+      ]
+    },
+    concat: {
+      dist: {
+        src: [
+          'public/src/css/bootstrap.css', 
+          'public/src/css/style.css'
+        ],
+        dest: 'public/css/style.css'
+      }
+    },
+    min: {
+      dist: {
+        src: [
+          'public/src/js/lib/jquery.js',
+          'public/src/js/lib/underscore.js',
+          'public/src/js/lib/prettify.js',
+          'public/src/js/lib/bootstrap.js',
+          'public/src/js/App.js',
+          'public/src/js/App.Config.js',
+          'public/src/js/App.Util.js',
+          'public/src/js/Controllers/*.js'
+        ],
+        dest: 'public/js/app.min.js'
+      }
     },
     watch: {
       files: '<config:lint.files>',
@@ -28,12 +62,15 @@ module.exports = function(grunt) {
         node: true
       },
       globals: {
-        exports: true
+        exports: true,
+        App: true,
+        window: false,
+        document: false
       }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint test');
+  grunt.registerTask('default', 'lint test concat min');
 
 };
