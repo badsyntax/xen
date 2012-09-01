@@ -14,7 +14,7 @@ function PageModel() {
     }
     
     if (this.contentPath === undefined) {
-      throw new Error('No page content set!')
+      throw new Error('No page content set!');
     } else {
       this.content = require('fs').readFileSync(__dirname + '/../content/' + this.contentPath, 'utf8');
     }
@@ -33,7 +33,7 @@ function PageModel() {
   this.__defineGetter__('dateshort', function() {
     return Globalize.format( new Date(this.dateCreated), 'd');
   });
-};
+}
 
 require('util').inherits(PageModel, BaseModel);
 

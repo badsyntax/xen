@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     lint: {
       files: [
         'grunt.js', 
-        'lib/*.js',
+        'lib/!(globalize|stylehtml)*.js',
         'controllers/**/*.js', 
         'models/**/*.js', 
         'test/**/*.js', 
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
       options: {
         curly: true,
         eqeqeq: true,
-        immed: true,
+        immed: false,
         latedef: true,
         newcap: true,
         noarg: true,

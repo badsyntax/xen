@@ -9,7 +9,7 @@ function BaseController(app, req, res) {
   this.view = {};
 
   this.execute();
-};
+}
 
 BaseController.prototype.execute = function() {
 

@@ -17,6 +17,6 @@ Base.prototype.setData = function(data, value) {
       this[data] = value;
       break;
   }
-}
+};
 
 module.exports = exports = Base;  

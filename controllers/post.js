@@ -10,7 +10,7 @@ PostController.prototype.actionIndex = function() {
     .replace(/^\//, '')
     .replace(/\?.*$/, '');
 
-  this.page = (new Blog).getPost(uri);
+  this.page = new Blog.getPost(uri);
 
   this.breadcrumbs.push({
     url: '/blog',

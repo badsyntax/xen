@@ -56,5 +56,6 @@ ContactController.prototype.sendEmail = function(data) {
   };
 
   transport.sendMail(mailOptions);
-}
+};
+
 module.exports = ContactController;

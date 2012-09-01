@@ -13,7 +13,7 @@ function PageController() {
     title: 'Home'
   }];
   BaseController.apply(this, arguments); 
-};
+}
 
 require('util').inherits(PageController, BaseController);
 
@@ -28,7 +28,7 @@ PageController.prototype.getPage = function() {
   var uri = (this.req.route.contentUri || this.req.url.replace('/', '')).replace(/\?.*$/, '');
 
   var record = new DataStore('pages').where(function(page){
-    return page.uri == uri
+    return page.uri === uri;
   }).find()[0];
 
   if (!record) {
@@ -42,7 +42,7 @@ PageController.prototype.getNavPages = function(uri) {
   return new DataStore('pages').where(function(page){
     return !!page.showInNav;
   }).find().map(function(data){
-    data.active = (data.uri == uri);
+    data.active = (data.uri === uri);
     return new PageModel(data);
   });
 };
@@ -98,6 +98,6 @@ PageController.prototype.after = function() {
 
   this.view.page = page;
   this.res.render(page.view, this.view);
-}
+};
 
 module.exports = PageController;
