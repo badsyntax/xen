@@ -24,6 +24,7 @@ module.exports = {
     ],
     style: [
       'css/bootstrap.css',
+      'css/prettify.css',
       'css/style.css'
     ]
   }
