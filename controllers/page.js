@@ -2,7 +2,6 @@ var DataStore = require('../lib/datastore');
 var PageModel = require('../models/page');
 var BaseController = require('./base');
 var View = require('../lib/view');
-var hbs = require('hbs');
 
 function PageController() { 
 
@@ -69,27 +68,27 @@ PageController.prototype.after = function() {
     last: true
   });
 
-  hbs.registerPartial('navigation', new View('fragments/navigation', { 
+  this.view.navigation = new View('fragments/navigation', { 
     pages: this.getNavPages(page.uri),
     assetsDomain: assetsDomain
-  }).render());
+  }).render();
   
-  hbs.registerPartial('breadcrumbs', new View('fragments/breadcrumbs', { 
+  this.view.breadcrumbs = new View('fragments/breadcrumbs', { 
     breadcrumbs: this.breadcrumbs
-  }).render());;
+  }).render();
 
-  hbs.registerPartial('head', new View('fragments/head', { 
+  this.view.head = new View('fragments/head', { 
     assetsDomain: assetsDomain,
     page: page
-  }).render());
+  }).render();
 
-  hbs.registerPartial('scripts', new View('fragments/scripts', {
+  this.view.scripts = new View('fragments/scripts', {
     assetsDomain: assetsDomain,
     controller: controller,
     config: {
       trackPage: trackPage
     }
-  }).render());
+  }).render();
 
   this.view.page = page;
   this.res.render(page.view, this.view);
