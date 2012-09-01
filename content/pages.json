@@ -1,1 +1,38 @@
-[{"uri":"","title":"Home","view":"page/home","contentPath":"pages/home.html","dateCreated":"07/07/2012","description":"Badsyntax: The home of Richard Willis","showInNav":true},{"uri":"blog","title":"Blog","view":"page/blog","contentPath":"pages/blog.html","dateCreated":"07/07/2012","description":"Blog articles about web technologies that interest me","showInNav":true},{"uri":"about","title":"About","view":"page/generic","contentPath":"pages/about.html","dateCreated":"07/07/2012","description":"About me and about this site","showInNav":true},{"uri":"contact","title":"Contact","view":"page/contact","contentPath":"pages/contact.html","dateCreated":"07/07/2012","description":"Contact me","showInNav":true},{"test":"helli"},{"test":"helli"}]
+[
+  {
+    "uri": "",
+    "title": "Home",
+    "view": "page/home",
+    "contentPath": "pages/home.html",
+    "dateCreated": "07/07/2012",
+    "description": "Badsyntax: The home of Richard Willis",
+    "showInNav": true
+  },
+  {
+    "uri": "blog",
+    "title": "Blog",
+    "view": "page/blog",
+    "contentPath": "pages/blog.html",
+    "dateCreated": "07/07/2012",
+    "description": "Blog articles about web technologies that interest me",
+    "showInNav": true
+  },
+  {
+    "uri": "about",
+    "title": "About",
+    "view": "page/generic",
+    "contentPath": "pages/about.html",
+    "dateCreated": "07/07/2012",
+    "description": "About me and about this site",
+    "showInNav": true
+  },
+  {
+    "uri": "contact",
+    "title": "Contact",
+    "view": "page/contact",
+    "contentPath": "pages/contact.html",
+    "dateCreated": "07/07/2012",
+    "description": "Contact me",
+    "showInNav": true
+  }
+]

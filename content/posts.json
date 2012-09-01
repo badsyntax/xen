@@ -5,8 +5,7 @@
     "view": "page/post",
     "contentPath": "posts/first-post.html",
     "tags": [
-      "lorem",
-      "ipsum"
+      "interesting"
     ],
     "dateCreated": 1344164251777
   }
