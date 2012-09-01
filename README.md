@@ -8,6 +8,7 @@ A node & express site generator.
 
 ## Documentation
 * [Installation](https://github.com/badsyntax/xen/wiki/Installation)
+* [Grunt Tasks](https://github.com/badsyntax/xen/wiki/Grunt-Tasks)
 
 ## Examples
 _(Coming soon)_
