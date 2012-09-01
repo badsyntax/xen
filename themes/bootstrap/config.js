@@ -2,7 +2,7 @@ module.exports = {
   modules: {
     blog: {
       twitterFeed: {
-        username: 'badsyntax'
+        username: false // or 'TWITTER_USERNAME' to show feed
       }
     }
   },

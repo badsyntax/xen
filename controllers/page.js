@@ -93,7 +93,7 @@ PageController.prototype.after = function() {
   this.view.scripts = new View('fragments/scripts', {
     scripts: new Assets('script').render(),
     controller: controller,
-    config: Theme.getConfigAsArray('script')
+    config: Theme.getConfigAsStringArray('script')
   }).render();
 
   this.view.page = page;

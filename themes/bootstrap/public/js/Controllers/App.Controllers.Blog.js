@@ -10,7 +10,10 @@ App.Controllers.Blog = function() {
   this.getElements();
   this.bindEvents();
   this.showDisqusCommentsCount();
-  this.showTeets();
+
+  if (!!this.config.twitterUserName) {
+    this.showTweets();
+  }
 };
 
 App.Util.inherits(App.Controllers.Blog, App.Controllers.Page);
@@ -83,10 +86,10 @@ App.Controllers.Blog.prototype.showDisqusCommentsCount = function() {
   App.Util.insertScript('disqus-comments-count', 'http://' + App.Config.Disqus.disqus_shortname + '.disqus.com/count.js');
 };
 
-App.Controllers.Blog.prototype.showTeets = function() {
+App.Controllers.Blog.prototype.showTweets = function() {
   
-  var username = 'badsyntax';
-  
+  var username = this.config.twitterUserName;
+
   var feedURL = [
     'https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true',
     'include_rts=true',
