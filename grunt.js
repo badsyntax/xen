@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
 
-  // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
     test: {
@@ -11,7 +10,9 @@ module.exports = function(grunt) {
     lint: {
       files: [
         'grunt.js', 
-        'lib/**/*.js', 
+        'lib/*.js',
+        'controllers/**/*.js', 
+        'models/**/*.js', 
         'test/**/*.js', 
         'public/js/App.js',
         'public/js/App.Config.js',
@@ -70,7 +71,5 @@ module.exports = function(grunt) {
     }
   });
 
-  // Default task.
-  grunt.registerTask('default', 'lint test concat min');
-
+  grunt.registerTask('default', 'lint concat min');
 };
