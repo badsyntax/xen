@@ -30,6 +30,7 @@ module.exports = function(grunt) {
         'grunt.js', 
         'lib/!(globalize|stylehtml)*.js',
         'controllers/**/*.js', 
+        'tasks/**/*.js',
         'models/**/*.js', 
         'test/**/*.js', 
         'public/js/App.js',
