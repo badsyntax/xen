@@ -1,3 +1,5 @@
+var DataStore = require('../lib/datastore');
+
 module.exports = function(grunt ) {
 
   grunt.registerTask('xen', 'Xen management task', function() {
@@ -11,90 +13,76 @@ module.exports = function(grunt ) {
       return;
     }
 
-    // sub-task-specific utilities
-    var init = {
-      deletepage: function(uri) {
+    var getDataItem = function(type, props, uriPrefix) {
 
-        var dataPath = grunt.task.getFile('../content/pages.json');
-        var data = grunt.file.readJSON(dataPath);
-        var found = false;
+      props.uri = (uriPrefix || '') + props.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+      props.contentPath = props.uri + '.html';
+      props.dateCreated = (props.dateCreated === 'now') ? new Date().getTime() : props.dateCreated;
+      props.showInNav = ( props.showInNav === 'y' || props.showInNav === 'Y' );
+      props.tags = props.tags ? props.tags.replace(/,\s+/g, ',').split(',') : [];
 
-        data = data.filter(function(item){
-          var isItem = (item.uri === uri);
-          if (isItem) { found = true; }
-          return !isItem;
-        });
-
-        if (!found) {
-          grunt.fail.warn('Page not found!');
-          return;
-        }
-
-        grunt.file.write(dataPath, JSON.stringify(data, null, 2));
-      },
-      addcontent: function() {
-
-        var done = task.async();
-
-        var prompts = [{
-          name: 'post_or_page',
-          message: 'Post or page? (post/page)',
-          default: 'page'          
-        }, {
-          name: 'title',
-          message: 'Page title'
-        }, {
-          name: 'description',
-          message: 'Page description'
-        }, {
-          name: 'view',
-          message: 'View file',
-          default: 'page/generic'
-        }, {
-          name: 'dateCreated',
-          message: 'Date',
-          default: 'now'
-        }, {
-          name: 'showInNav',
-          message: 'Show in navigation?',
-          default: 'y/N'
-        }];
-
-        grunt.helper('prompt', {}, prompts, function(err, props) {
-
-          var url = 'post/' + props.title
-            .toLowerCase()
-            .replace(/[^\w ]+/g,'')
-            .replace(/ +/g,'-');
-            
-          var dataPath = grunt.task.getFile('../content/' + props.post_or_page + 's.json');
-          var contentPath = url + '.html';
-          var data = grunt.file.readJSON(dataPath);
-
-          if (props.dateCreated === 'now') {
-            props.dateCreated = new Date().getTime();
-          }
-          props.showInNav = ( props.showInNav === 'y' || props.showInNav === 'Y' );
-
-          data.push({
-            uri: url,
-            title: props.title,
-            view: props.view,
-            contentPath: contentPath,
-            dateCreated: props.dateCreated,
-            description: props.description,
-            showInNav: props.showInNav
-          });
-
-          grunt.file.write(dataPath, JSON.stringify(data, null, 2));
-          done();
-        });
-      }
+      return props;
     };
 
-    var subtask = init[this.args[0]];
-    if (subtask) {
-      subtask.apply(init, arg);
+    var prompts = {
+      content: [{
+        name: 'title',
+        message: 'Title'
+      }, {
+        name: 'description',
+        message: 'Description'
+      }, {
+        name: 'tags',
+        message: 'Tags (comma separated)'
+      }, {
+        name: 'view',
+        message: 'View file',
+        default: 'page/generic'
+      }, {
+        name: 'dateCreated',
+        message: 'Date',
+        default: 'now'
+      }, {
+        name: 'showInNav',
+        message: 'Show in navigation?',
+        default: 'y/N'
+      }]
+    };
+
+    // sub-task-specific utilities
+    var subtask = {
+      addpost: function(uri) {
+        var done = task.async();
+        grunt.helper('prompt', prompts.content, function(err, props) {
+          var data = getDataItem('posts', props, 'post/');
+          new DataStore('posts').add(data).save();
+          done();
+        });
+      },
+      addpage: function(uri) {
+        var done = task.async();
+        grunt.helper('prompt', prompts.content, function(err, props) {
+          var data = getDataItem('pages', props);
+          console.log(data, 'test');
+          new DataStore('pages').add(data).save();
+          done();
+        });
+      },
+      removepage: function(uri) {
+        new DataStore('pages').where(function(page){
+          return ( page.uri === uri );
+        }).remove();
+      },
+      removepost: function(uri) {
+        new DataStore('posts').where(function(post){
+          return ( post.uri === uri );
+        }).remove();
+      },
+    };
+
+    var stask = subtask[this.args[0]];
+    if (stask) {
+      stask.apply(stask, arg);
     } else {
       grunt.fail.warn('Sub-task not found!');
     }
