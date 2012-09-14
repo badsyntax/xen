@@ -29,6 +29,39 @@ module.exports = function(grunt ) {
       return props;
     };
 
+    var wipeDirectory = function(dir, callback) {
+      fs.readdir(dir, function(err, files) {
+        if (!files.length) return callback();
+        var i = 0;
+        files.forEach(function(file) {
+          var filePath = dir + '/' + file;
+          fs.stat(filePath, function(err, stats) {
+            if (err) {
+              console.log(cd .JSON.stringify(err));
+              return callback();
+            } 
+            if (!stats.isFile()) return callback();
+            fs.unlink(filePath, function(err) {
+              if (err) console.log(JSON.stringify(err));
+              if (++i === files.length) callback();
+            });
+          });
+        });
+      });  
+    };
+
+    var copyFiles = function(oldDir, newDir, callback) {
+      fs.readdir(oldDir, function(err, files) {
+        if (!files.length) return callback();
+        var dir = oldDir.replace(/tasks/, '');
+        files.forEach(function(file) {
+          var content = grunt.file.read(grunt.task.getFile(dir + '/' + file));
+          grunt.file.write('./' + newDir + '/' + file, content);
+        });
+        callback();
+      });
+    };
+
     var prompts = {
       content: [{
         name: 'title',
@@ -88,40 +121,6 @@ module.exports = function(grunt ) {
         }).remove();
       },
       reset: function() {
-
-        function wipeDirectory(dir, callback) {
-          fs.readdir(dir, function(err, files) {
-            if (!files.length) return callback();
-            var i = 0;
-            files.forEach(function(file) {
-              var filePath = dir + '/' + file;
-              fs.stat(filePath, function(err, stats) {
-                if (err) {
-                  console.log(cd .JSON.stringify(err));
-                  return callback();
-                } 
-                if (!stats.isFile()) return callback();
-                fs.unlink(filePath, function(err) {
-                  if (err) console.log(JSON.stringify(err));
-                  if (++i === files.length) callback();
-                });
-              });
-            });
-          });  
-        }
-
-        function copyFiles(oldDir, newDir, callback) {
-          fs.readdir(oldDir, function(err, files) {
-            if (!files.length) return callback();
-            var dir = oldDir.replace(/tasks/, '');
-            files.forEach(function(file) {
-              var content = grunt.file.read(grunt.task.getFile(dir + '/' + file));
-              grunt.file.write('./' + newDir + '/' + file, content);
-            });
-            callback();
-          });
-        }
-
         var done = task.async();
 
         var pages = new DataStore(null, __dirname + '/xen/content/pages.json');
