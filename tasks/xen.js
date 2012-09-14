@@ -62,7 +62,7 @@ module.exports = function(grunt ) {
       });
     };
 
-    var prompts = {
+    var pagePrompts = {
       content: [{
         name: 'title',
         message: 'Title'
@@ -91,7 +91,7 @@ module.exports = function(grunt ) {
     var subtask = {
       addpost: function(uri) {
         var done = task.async();
-        grunt.helper('prompt', prompts.content, function(err, props) {
+        grunt.helper('prompt', pagePrompts.content, function(err, props) {
           
           var data = getDataItem('posts', props, 'post/');
           new DataStore('posts').add(data).save();
@@ -104,7 +104,7 @@ module.exports = function(grunt ) {
       },
       addpage: function(uri) {
         var done = task.async();
-        grunt.helper('prompt', prompts.content, function(err, props) {
+        grunt.helper('prompt', pagePrompts.content, function(err, props) {
           var data = getDataItem('pages', props);
           new DataStore('pages').add(data).save();
           done();
@@ -119,6 +119,32 @@ module.exports = function(grunt ) {
         new DataStore('posts').where(function(post){
           return ( post.uri === uri );
         }).remove();
+      },
+      install: function() {
+
+        var done = task.async();
+
+        var prompts = {
+          content: [{
+            name: 'sitename',
+            message: 'Site name:'
+          }, {
+            name: 'theme',
+            message: 'Theme:',
+            default: 'bootstrap'
+          }]
+        };
+
+        grunt.helper('prompt', prompts.content, function(err, props) {
+
+          // TODO: We have to use the user options to create the config file
+          var content = grunt.file.read(grunt.task.getFile('xen/config/site.js'));
+          grunt.file.write('./config/site.js', content);
+
+          subtask.reset();
+          
+          done();
+        });
       },
       reset: function() {
         var done = task.async();
