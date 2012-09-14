@@ -22,6 +22,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+GLOBAL.requireRoot = function(module) {
+  return require(__dirname + module);
+};
+
 router.setup(app);
 
 http.createServer(app).listen(app.get('port'), function(){
