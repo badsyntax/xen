@@ -4,6 +4,7 @@ var BaseController = require('./base');
 var View = require('../lib/view');
 var Assets = require('../lib/assets');
 var Theme = require('../lib/theme');
+var ViewModel = require('../lib/viewmodel');
 var siteConfig = require('../config/site');
 var themeConfig = require('../themes/' + siteConfig.theme + '/config');
 
@@ -19,7 +20,7 @@ require('util').inherits(PageController, BaseController);
 
 PageController.prototype.actionIndex = function() {};
 
-PageController.prototype.getPage = function() {
+PageController.prototype.getPageModel = function() {
 
   if (this.page !== undefined) {
     return this.page;
@@ -38,67 +39,53 @@ PageController.prototype.getPage = function() {
   return new PageModel( record );
 };
 
-PageController.prototype.getNavPages = function(uri) {
-  return new DataStore('pages').where(function(page){
-    return !!page.showInNav;
-  }).find().map(function(data){
-    data.active = (data.uri === uri);
-    return new PageModel(data);
-  });
-};
-
 PageController.prototype.after = function() {
 
   BaseController.prototype.after.apply(this, arguments);
 
-  var page = this.getPage();
+  var pageModel = this.getPageModel();
 
-  if (!page) {
-    this.res.send(404);
-    return;
+  if (!pageModel) {
+    return this.res.send(404);
   }
 
-  var isLocal = true || this.app.address().address === '127.0.0.1';
-  var assetsDomain = '/';
-  var trackPage = true || !isLocal;
   var controller = this.req.route.controller;
   controller = controller.charAt(0).toUpperCase() + controller.slice(1);
 
   Theme.setConfig('script', {
-    trackPage: trackPage
+    trackPage: true || this.app.address().address !== '127.0.0.1' // FIXME
   });
 
   this.breadcrumbs.push({
     uri: this.req.url,
-    title: page.title,
+    title: pageModel.title,
     last: true
   });
 
-  this.view.navigation = new View('fragments/navigation', { 
-    pages: this.getNavPages(page.uri),
-    siteConfig: siteConfig
-  }).render();
-  
-  this.view.breadcrumbs = new View('fragments/breadcrumbs', { 
+  this.view.navigation = (new ViewModel.factory('fragments/navigation', {
+    page: pageModel
+  })).render();
+
+  this.view.breadcrumbs = (new ViewModel.factory('fragments/breadcrumbs', { 
     breadcrumbs: this.breadcrumbs
-  }).render();
+  })).render();
 
-  var assets = new Assets(this.app);
+  var assets = new Assets(this.app);  
 
-  this.view.head = new View('fragments/head', { 
+  this.view.head = (new ViewModel.factory('fragments/head', { 
     siteConfig: siteConfig,
     styles: assets.render('style'),
-    page: page
-  }).render();
+    page: pageModel
+  })).render();
 
-  this.view.scripts = new View('fragments/scripts', {
+  this.view.scripts = (new ViewModel.factory('fragments/scripts', {
     scripts: assets.render('script'),
     controller: controller,
     config: Theme.getConfigAsStringArray('script')
-  }).render();
+  })).render();
 
-  this.view.page = page;
-  this.res.render(page.view, this.view);
+  this.view.page = pageModel;
+  this.res.render(pageModel.view, this.view);
 };
 
 module.exports = PageController;
