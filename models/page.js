@@ -1,5 +1,6 @@
 var BaseModel = require('./base');
 var Globalize = require('../lib/globalize');
+var DataStore = require('../lib/datastore');
 
 Globalize.culture('en-GB');
 
@@ -36,5 +37,18 @@ function PageModel() {
 }
 
 require('util').inherits(PageModel, BaseModel);
+
+PageModel.factory = function(uri) {
+
+  var record = new DataStore('pages').where(function(page){
+    return page.uri === uri;
+  }).find()[0];
+
+  if (!record) {
+    return false;
+  }
+
+  return new PageModel( record );
+};
 
 module.exports = exports = PageModel;  

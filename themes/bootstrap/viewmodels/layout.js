@@ -1,4 +1,6 @@
 var ViewModel = requireRoot('/lib/viewmodel');
+var DataStore = requireRoot('/lib/datastore');
+var PageModel = requireRoot('/models/page');
 var siteConfig = requireRoot('/config/site');
 var Assets = requireRoot('/lib/assets');
 
@@ -10,21 +12,21 @@ require('util').inherits(LayoutViewModel, ViewModel);
 
 LayoutViewModel.prototype.getNavigation = function() {
   return ViewModel.factory('fragments/navigation', {
-    page: this.view.data.page
+    page: this.getData('page')
   }).render();
 };
 
 LayoutViewModel.prototype.getHead = function() {
   return ViewModel.factory('fragments/head', { 
-    app: this.view.data.app,
-    page: this.view.data.page
+    app: this.getData('app'),
+    page: this.getData('page')
   }).render();
 };
 
 LayoutViewModel.prototype.getScripts = function() {
   return ViewModel.factory('fragments/scripts', {
-    app: this.view.data.app,
-    route: this.view.data.route,
+    app: this.getData('app'),
+    route: this.getData('req').route
   }).render();
 };
 

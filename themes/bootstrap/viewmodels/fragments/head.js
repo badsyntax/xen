@@ -9,7 +9,7 @@ function HeadViewModel(data) {
 require('util').inherits(HeadViewModel, ViewModel);
 
 HeadViewModel.prototype.getStyles = function() {
-  var assets = new Assets(this.view.data.app);  
+  var assets = new Assets(this.getData('app'));  
   return assets.render('style');
 };
 

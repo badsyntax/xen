@@ -9,7 +9,7 @@ function ScriptsViewModel(data) {
 require('util').inherits(ScriptsViewModel, ViewModel);
 
 ScriptsViewModel.prototype.getScripts = function() {
-  var assets = new Assets(this.view.data.app);  
+  var assets = new Assets(this.getData('app'));  
   return assets.render('script');
 };
 

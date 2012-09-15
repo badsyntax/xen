@@ -13,29 +13,21 @@ function PageController() {
 
 require('util').inherits(PageController, BaseController);
 
+PageController.prototype.before = function() {
+  this.viewModel = ViewModel.factory('layout', {
+    app: this.app,
+    req: this.req
+  });
+};
+
 PageController.prototype.actionIndex = function() {};
 
 PageController.prototype.getPageModel = function() {
 
-  if (this.page !== undefined) {
-    return this.page;
-  }
+  var uri = (this.req.route.contentUri || this.req.url.replace('/', ''));
+  uri = uri.replace(/\?.*$/, ''); // remove query string
 
-  var uri = (this.req.route.contentUri || this.req.url.replace('/', '')).replace(/\?.*$/, '');
-
-  var record = new DataStore('pages').where(function(page){
-    return page.uri === uri;
-  }).find()[0];
-
-  if (!record) {
-    return false;
-  }
-
-  return new PageModel( record );
-};
-
-PageController.prototype.before = function() {
-  this.viewModel = ViewModel.factory('layout');
+  return this.page || PageModel.factory(uri);
 };
 
 PageController.prototype.after = function() {
@@ -55,15 +47,15 @@ PageController.prototype.after = function() {
   });
   
   this.viewModel.setData({
-    app: this.app,
-    route: this.req.route,
     page: pageModel,
     breadcrumbs: this.breadcrumbs
   });
 
   this.viewModel.compile();
 
-  this.res.render(pageModel.view, this.viewModel.getData());
+  var layoutViewData = this.viewModel.getData();
+
+  this.res.render(pageModel.view, layoutViewData);
 };
 
 module.exports = PageController;
