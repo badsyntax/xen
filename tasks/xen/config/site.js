@@ -1,5 +1,5 @@
 module.exports = {
-  siteName: 'test',
+  name: 'test',
   theme: 'bootstrap',
   beautifyHtml: true
 };

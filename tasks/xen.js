@@ -50,15 +50,11 @@ module.exports = function(grunt ) {
       });  
     };
 
-    var copyFiles = function(oldDir, newDir, callback) {
-      fs.readdir(oldDir, function(err, files) {
-        if (!files.length) return callback();
-        var dir = oldDir.replace(/tasks/, '');
-        files.forEach(function(file) {
-          var content = grunt.file.read(grunt.task.getFile(dir + '/' + file));
-          grunt.file.write('./' + newDir + '/' + file, content);
-        });
-        callback();
+    var copyFiles = function(oldDir, newDir) {
+      grunt.file.recurse(oldDir, function(file, d, x, filename) {
+        var newFile = './' + newDir + '/' + filename;
+        var content = grunt.file.read(grunt.task.getFile('../' + file));
+        grunt.file.write(newFile, content);
       });
     };
 
@@ -141,13 +137,12 @@ module.exports = function(grunt ) {
           var content = grunt.file.read(grunt.task.getFile('xen/config/site.js'));
           grunt.file.write('./config/site.js', content);
 
-          subtask.reset();
-          
-          done();
+          subtask.reset(done);
         });
       },
-      reset: function() {
-        var done = task.async();
+      reset: function(callback) {
+
+        callback = callback || task.async();
 
         var pages = new DataStore(null, __dirname + '/xen/content/pages.json');
         pages.save(__dirname + '/../content/pages.json')
@@ -157,11 +152,8 @@ module.exports = function(grunt ) {
 
         wipeDirectory('content/pages', function() {
           wipeDirectory('content/posts', function() {
-            copyFiles('tasks/xen/content/pages', 'content/pages', function() {
-              copyFiles('tasks/xen/content/posts', 'content/posts', function() {
-                done();
-              })
-            });
+            copyFiles('tasks/xen/content/pages', 'content/pages');
+            copyFiles('tasks/xen/content/posts', 'content/posts');
           });
         });
       }
