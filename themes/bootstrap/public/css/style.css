@@ -44,14 +44,15 @@ h3 {
   border-radius: 2px;
   margin-bottom: 6px;
 }
+
+.entry footer section .tag:hover {
+  background: #3A87AD;
+}
+.entry footer section .icon-comment {
+  margin-top: 2px;
+}
 .posts footer section:last-child {
   margin-bottom: 0;
-}
-.posts footer section a:after {
-  content: ",";
-}
-.posts footer section a:last-child:after {
-  content: "";
 }
 .pagination a {
   background: #FFF;
@@ -175,4 +176,13 @@ body {
     margin-left: -14px;
     margin-right: -14px;
   }
+}
+
+
+#backtotop {
+  display: none;
+padding: 20px;
+position: fixed;
+bottom: 20px;
+right: 20px;
 }

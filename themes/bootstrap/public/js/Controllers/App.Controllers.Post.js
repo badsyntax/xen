@@ -34,7 +34,7 @@ App.Controllers.Post.prototype.showTweetButton = function() {
 };
 
 App.Controllers.Post.prototype.showGooglePlusButton = function() {
-  App.Util.globalizeConfig( App.Config.GooglePlus );
+  App.Util.globalizeConfig( App.Config.get('googleplus') );
   App.Util.insertScript('google-plus', 'https://apis.google.com/js/plusone.js');
 };
 
@@ -50,8 +50,8 @@ App.Controllers.Post.prototype.showDisqusComments = function() {
   
   window.disqus_config = this.disqusConfig;
 
-  App.Util.globalizeConfig( App.Config.Disqus );
-  App.Util.insertScript('disqus-comments', 'http://' + App.Config.Disqus.disqus_shortname + '.disqus.com/embed.js');
+  App.Util.globalizeConfig( App.Config.get('disqus') );
+  App.Util.insertScript('disqus-comments', 'http://' + App.Config.get('disqus.disqus_shortname') + '.disqus.com/embed.js');
 };
 
 App.Controllers.Post.prototype.disqusConfig = function() {

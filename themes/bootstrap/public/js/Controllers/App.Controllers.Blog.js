@@ -82,8 +82,8 @@ App.Controllers.Blog.prototype.collapsePosts = function() {
 };
 
 App.Controllers.Blog.prototype.showDisqusCommentsCount = function() {
-  App.Util.globalizeConfig( App.Config.Disqus );
-  App.Util.insertScript('disqus-comments-count', 'http://' + App.Config.Disqus.disqus_shortname + '.disqus.com/count.js');
+  App.Util.globalizeConfig( App.Config.get('disqus') );
+  App.Util.insertScript('disqus-comments-count', 'http://' + App.Config.get('disqus.disqus_shortname') + '.disqus.com/count.js');
 };
 
 App.Controllers.Blog.prototype.showTweets = function() {
