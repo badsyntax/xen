@@ -1,18 +1,5 @@
 {{{scripts}}}
 <script>
-  App.Config.set({
-    disqus: {
-      disqus_developer: ( document.domain === '127.0.0.1' ),
-      disqus_shortname: 'USERNAME'
-    },
-    analytics: {
-      account: 'UA-XXXXXXX-XX'
-    },
-    googleplus: {
-      lang: 'en-GB' 
-    }
-  });
-  new App.Controllers.{{controller}}({ {{#config}}
-    {{key}}: {{{val}}}{{#notLast}},{{/notLast}}{{/config}}
-  });
+  App.Config.set({{{siteConfigJSON}}});
+  new App.Controllers.{{controller}};
 </script>

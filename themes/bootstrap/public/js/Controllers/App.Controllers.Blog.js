@@ -11,7 +11,7 @@ App.Controllers.Blog = function() {
   this.bindEvents();
   this.showDisqusCommentsCount();
 
-  if (!!this.config.twitterUserName) {
+  if (!!App.Config.get('twitter.username')) {
     this.showTweets();
   }
 };
@@ -88,7 +88,7 @@ App.Controllers.Blog.prototype.showDisqusCommentsCount = function() {
 
 App.Controllers.Blog.prototype.showTweets = function() {
   
-  var username = this.config.twitterUserName;
+  var username = App.Config.get('twitter.username');
 
   var feedURL = [
     'https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true',

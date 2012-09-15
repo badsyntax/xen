@@ -1,5 +1,6 @@
-var App = App || { 
+var App = { 
   Config: {}, 
   Util: {}, 
-  Controllers: {} 
+  Controllers: {},
+  Plugins: {}
 };

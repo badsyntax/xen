@@ -3,6 +3,4 @@
 /**********************
  * Base controllers
  **********************/
-App.Controllers.Base = function(config) {
-  this.config = config;
-};
+App.Controllers.Base = function() {};

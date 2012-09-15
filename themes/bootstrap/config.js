@@ -15,6 +15,7 @@ module.exports = {
       'js/App.js',
       'js/App.Config.js',
       'js/App.Util.js',
+      'js/Plugins/App.Plugins.BackToTop.js',
       'js/Controllers/App.Controllers.Base.js',     
       'js/Controllers/App.Controllers.Page.js',     
       'js/Controllers/App.Controllers.Blog.js',     
