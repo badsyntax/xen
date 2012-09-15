@@ -1,12 +1,7 @@
 var DataStore = require('../lib/datastore');
 var PageModel = require('../models/page');
 var BaseController = require('./base');
-var View = require('../lib/view');
-var Assets = require('../lib/assets');
-var Theme = require('../lib/theme');
 var ViewModel = require('../lib/viewmodel');
-var siteConfig = require('../config/site');
-var themeConfig = require('../themes/' + siteConfig.theme + '/config');
 
 function PageController() { 
   this.breadcrumbs = this.breadcrumbs || [{
@@ -39,6 +34,10 @@ PageController.prototype.getPageModel = function() {
   return new PageModel( record );
 };
 
+PageController.prototype.before = function() {
+  this.viewModel = ViewModel.factory('layout');
+};
+
 PageController.prototype.after = function() {
 
   BaseController.prototype.after.apply(this, arguments);
@@ -49,43 +48,22 @@ PageController.prototype.after = function() {
     return this.res.send(404);
   }
 
-  var controller = this.req.route.controller;
-  controller = controller.charAt(0).toUpperCase() + controller.slice(1);
-
-  Theme.setConfig('script', {
-    trackPage: true || this.app.address().address !== '127.0.0.1' // FIXME
-  });
-
   this.breadcrumbs.push({
     uri: this.req.url,
     title: pageModel.title,
     last: true
   });
-
-  this.view.navigation = (new ViewModel.factory('fragments/navigation', {
-    page: pageModel
-  })).render();
-
-  this.view.breadcrumbs = (new ViewModel.factory('fragments/breadcrumbs', { 
+  
+  this.viewModel.setData({
+    app: this.app,
+    route: this.req.route,
+    page: pageModel,
     breadcrumbs: this.breadcrumbs
-  })).render();
+  });
 
-  var assets = new Assets(this.app);  
+  this.viewModel.compile();
 
-  this.view.head = (new ViewModel.factory('fragments/head', { 
-    siteConfig: siteConfig,
-    styles: assets.render('style'),
-    page: pageModel
-  })).render();
-
-  this.view.scripts = (new ViewModel.factory('fragments/scripts', {
-    scripts: assets.render('script'),
-    controller: controller,
-    config: Theme.getConfigAsStringArray('script')
-  })).render();
-
-  this.view.page = pageModel;
-  this.res.render(pageModel.view, this.view);
+  this.res.render(pageModel.view, this.viewModel.getData());
 };
 
 module.exports = PageController;

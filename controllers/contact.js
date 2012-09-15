@@ -25,9 +25,10 @@ ContactController.prototype.actionPost = function() {
   validator.rule('message', 'notEmpty', '- must not be empty');
 
   var errors = validator.check();
+  var msg = null;
 
   if (errors) {
-    this.view.message = {
+    message = {
       type: 'error',
       friendlytype: 'Error',
       content: 'Please correct the fields below.'
@@ -35,15 +36,18 @@ ContactController.prototype.actionPost = function() {
   } else {
     this.sendEmail(data);
     data = {};
-    this.view.message = {
+    message = {
       type: 'success',
       friendlytype: 'Success',
       content: 'Message successfully sent.'
     };
   }
 
-  this.view.errors = errors;
-  this.view.data = data;
+  this.viewModel.setData({
+    message: msg,
+    errors: errors,
+    data: data
+  });
 };
 
 ContactController.prototype.sendEmail = function(data) {

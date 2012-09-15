@@ -18,10 +18,11 @@ BlogController.prototype.actionIndex = function() {
   var posts = blog.getPosts(page, 10);
   var tags = blog.getTags(null, 10);
 
-  this.view.posts = posts;
-  this.view.tags = tags;
-
-  this.view.pagination = this.renderPagination(blog.pagination);
+  this.viewModel.setData({
+    posts: posts,
+    tags: tags,
+    pagination: this.renderPagination(blog.pagination)
+  });
 
   Theme.setConfig('script', {
     twitterUserName: themeConfig.modules.blog.twitterFeed.username
@@ -48,10 +49,11 @@ BlogController.prototype.actionTag = function() {
     return;
   }
 
-  this.view.posts = posts;
-  this.view.tags = tags;
-
-  this.view.pagination = this.renderPagination(blog.pagination);
+  this.viewModel.setData({
+    posts: posts,
+    tags: tags,
+    pagination: this.renderPagination(blog.pagination)
+  });
 };
 
 BlogController.prototype.renderPagination = function(pagination) {
