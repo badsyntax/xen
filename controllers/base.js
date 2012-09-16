@@ -1,4 +1,5 @@
 var DataStore = require('../lib/datastore');
+var ViewModel = require('../lib/viewmodel');
 var PageModel = require('../models/page');
 
 function BaseController(app, req, res) {
@@ -7,6 +8,7 @@ function BaseController(app, req, res) {
   this.req = req;
   this.res = res;
   this.viewModel = {};
+  this.layoutView = 'layouts/page';
 
   this.execute();
 }
@@ -25,7 +27,16 @@ BaseController.prototype.execute = function() {
   this.after();
 };
 
-BaseController.prototype.before = function(){};
-BaseController.prototype.after = function(){};
+BaseController.prototype.before = function(){
+  this.layout = ViewModel.factory('layout', {
+    app: this.app,
+    req: this.req
+  });
+};
+
+BaseController.prototype.after = function(){
+  this.layout.compile();
+  this.res.render(this.layout.getPath(), this.layout.getData());
+};
 
 module.exports = BaseController;

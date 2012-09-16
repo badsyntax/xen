@@ -43,7 +43,7 @@ ContactController.prototype.actionPost = function() {
     };
   }
 
-  this.viewModel.setData({
+  this.layout.setData({
     message: msg,
     errors: errors,
     data: data

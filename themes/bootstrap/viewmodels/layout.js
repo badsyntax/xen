@@ -1,9 +1,24 @@
 var ViewModel = requireRoot('/lib/viewmodel');
+var PageModel = requireRoot('/models/page');
 
 function LayoutViewModel() {
-  ViewModel.apply(this, arguments); 
+  ViewModel.apply(this, arguments);
+  this.setData({
+    layout: false,
+    page: this.getPage()
+  });
 }
 require('util').inherits(LayoutViewModel, ViewModel);
+
+LayoutViewModel.prototype.getPage = function() {
+
+  var uri = (
+       this.getData('req').route.contentUri 
+    || this.getData('req').url.replace('/', '')
+  ).replace(/\?.*$/, ''); // remove query string
+
+  return PageModel.factory(uri);
+};
 
 LayoutViewModel.prototype.navigation = function() {
   return ViewModel.factory('fragments/navigation', {
@@ -25,10 +40,8 @@ LayoutViewModel.prototype.scripts = function() {
   }).render();
 };
 
-LayoutViewModel.prototype.breadcrumbs = function() {
-  return ViewModel.factory('fragments/breadcrumbs', {
-    breadcrumbs: this.getData('crumbs')
-  }).render();
+LayoutViewModel.prototype.body = function() {
+  return ViewModel.factory(this.getData('page').view, this.getData()).render();
 };
 
 module.exports = exports = LayoutViewModel;

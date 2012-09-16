@@ -5,9 +5,13 @@ var path = require('path');
 var app = express();
 var config = require('./config/site');
 
+
 app.configure(function(){
+
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/themes/' + config.theme + '/views');
+  app.set('view options', { layout: false });
+
   app.set('view engine', 'hbs');
   app.use(express.favicon(__dirname + '/public/favicon.ico', { maxAge: 2592000000 }));
   app.use(express.logger('dev'));

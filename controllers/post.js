@@ -12,10 +12,10 @@ PostController.prototype.actionIndex = function() {
 
   this.page = (new Blog).getPost(uri);
 
-  this.breadcrumbs.push({
-    url: '/blog',
-    title: 'Blog'
-  });
+  // this.breadcrumbs.push({
+  //   url: '/blog',
+  //   title: 'Blog'
+  // });
 };
 
 module.exports = PostController;

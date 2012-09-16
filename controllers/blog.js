@@ -18,7 +18,7 @@ BlogController.prototype.actionIndex = function() {
   var posts = blog.getPosts(page, 10);
   var tags = blog.getTags(null, 10);
 
-  this.viewModel.setData({
+  this.layout.setData({
     posts: posts,
     tags: tags,
     pagination: this.renderPagination(blog.pagination)
@@ -49,7 +49,7 @@ BlogController.prototype.actionTag = function() {
     return;
   }
 
-  this.viewModel.setData({
+  this.layout.setData({
     posts: posts,
     tags: tags,
     pagination: this.renderPagination(blog.pagination)
