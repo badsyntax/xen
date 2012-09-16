@@ -5,7 +5,6 @@ var ViewModel = requireRoot('/lib/viewmodel');
 function NavigationViewModel() {
   ViewModel.apply(this, arguments); 
 }
-
 require('util').inherits(NavigationViewModel, ViewModel);
 
 NavigationViewModel.prototype.pages = function(uri) {
@@ -17,8 +16,6 @@ NavigationViewModel.prototype.pages = function(uri) {
   });
 };
 
-NavigationViewModel.prototype.siteConfig = function() {
-  return requireRoot('/config/site');
-};
+NavigationViewModel.prototype.siteConfig = requireRoot('/config/site');
 
 module.exports = exports = NavigationViewModel;

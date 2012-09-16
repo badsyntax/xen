@@ -52,7 +52,6 @@ PageController.prototype.after = function() {
   });
 
   this.viewModel.compile();
-
   var layoutViewData = this.viewModel.getData();
 
   this.res.render(pageModel.view, layoutViewData);

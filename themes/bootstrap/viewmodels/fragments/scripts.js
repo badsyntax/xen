@@ -5,7 +5,6 @@ var Assets = requireRoot('/lib/assets');
 function ScriptsViewModel(data) {
   ViewModel.apply(this, arguments); 
 }
-
 require('util').inherits(ScriptsViewModel, ViewModel);
 
 ScriptsViewModel.prototype.scripts = function() {

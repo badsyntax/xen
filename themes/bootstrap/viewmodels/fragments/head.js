@@ -5,7 +5,6 @@ var Assets = requireRoot('/lib/assets');
 function HeadViewModel(data) {
   ViewModel.apply(this, arguments); 
 }
-
 require('util').inherits(HeadViewModel, ViewModel);
 
 HeadViewModel.prototype.styles = function() {
@@ -13,8 +12,6 @@ HeadViewModel.prototype.styles = function() {
   return assets.render('style');
 };
 
-HeadViewModel.prototype.siteConfig = function() {
-  return siteConfig;
-};
+HeadViewModel.prototype.siteConfig = siteConfig;
 
 module.exports = exports = HeadViewModel;

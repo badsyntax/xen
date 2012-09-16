@@ -7,7 +7,6 @@ var Assets = requireRoot('/lib/assets');
 function LayoutViewModel() {
   ViewModel.apply(this, arguments); 
 }
-
 require('util').inherits(LayoutViewModel, ViewModel);
 
 LayoutViewModel.prototype.navigation = function() {
