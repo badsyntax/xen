@@ -8,7 +8,7 @@ function NavigationViewModel() {
 
 require('util').inherits(NavigationViewModel, ViewModel);
 
-NavigationViewModel.prototype.getPages = function(uri) {
+NavigationViewModel.prototype.pages = function(uri) {
   return new DataStore('pages').where(function(page){
     return !!page.showInNav;
   }).find().map(function(data){
@@ -17,7 +17,7 @@ NavigationViewModel.prototype.getPages = function(uri) {
   });
 };
 
-NavigationViewModel.prototype.getSiteConfig = function() {
+NavigationViewModel.prototype.siteConfig = function() {
   return requireRoot('/config/site');
 };
 

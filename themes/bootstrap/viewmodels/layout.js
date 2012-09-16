@@ -10,20 +10,20 @@ function LayoutViewModel() {
 
 require('util').inherits(LayoutViewModel, ViewModel);
 
-LayoutViewModel.prototype.getNavigation = function() {
+LayoutViewModel.prototype.navigation = function() {
   return ViewModel.factory('fragments/navigation', {
     page: this.getData('page')
   }).render();
 };
 
-LayoutViewModel.prototype.getHead = function() {
+LayoutViewModel.prototype.head = function() {
   return ViewModel.factory('fragments/head', { 
     app: this.getData('app'),
     page: this.getData('page')
   }).render();
 };
 
-LayoutViewModel.prototype.getScripts = function() {
+LayoutViewModel.prototype.scripts = function() {
   return ViewModel.factory('fragments/scripts', {
     app: this.getData('app'),
     route: this.getData('req').route

@@ -8,17 +8,17 @@ function ScriptsViewModel(data) {
 
 require('util').inherits(ScriptsViewModel, ViewModel);
 
-ScriptsViewModel.prototype.getScripts = function() {
+ScriptsViewModel.prototype.scripts = function() {
   var assets = new Assets(this.getData('app'));  
   return assets.render('script');
 };
 
-ScriptsViewModel.prototype.getController = function() {
+ScriptsViewModel.prototype.controller = function() {
   var controller = this.view.data.route.controller;
   return controller.charAt(0).toUpperCase() + controller.slice(1);
 };
 
-ScriptsViewModel.prototype.getSiteConfigJSON = function() {
+ScriptsViewModel.prototype.siteConfigJSON = function() {
   return JSON.stringify(siteConfig);
 };
 

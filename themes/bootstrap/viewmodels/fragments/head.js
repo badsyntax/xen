@@ -8,12 +8,12 @@ function HeadViewModel(data) {
 
 require('util').inherits(HeadViewModel, ViewModel);
 
-HeadViewModel.prototype.getStyles = function() {
+HeadViewModel.prototype.styles = function() {
   var assets = new Assets(this.getData('app'));  
   return assets.render('style');
 };
 
-HeadViewModel.prototype.getSiteConfig = function() {
+HeadViewModel.prototype.siteConfig = function() {
   return siteConfig;
 };
 
