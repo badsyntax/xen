@@ -31,19 +31,27 @@ module.exports = function(grunt ) {
 
     var wipeDirectory = function(dir, callback) {
       fs.readdir(dir, function(err, files) {
-        if (!files.length) return callback();
+        if (!files.length) {
+          return callback();
+        }
         var i = 0;
         files.forEach(function(file) {
           var filePath = dir + '/' + file;
           fs.stat(filePath, function(err, stats) {
             if (err) {
-              console.log(cd .JSON.stringify(err));
+              console.log(JSON.stringify(err));
               return callback();
             } 
-            if (!stats.isFile()) return callback();
+            if (!stats.isFile()) {
+              return callback();
+            }
             fs.unlink(filePath, function(err) {
-              if (err) console.log(JSON.stringify(err));
-              if (++i === files.length) callback();
+              if (err) {
+                console.log(JSON.stringify(err));
+              }
+              if (++i === files.length) {
+                callback();
+              }
             });
           });
         });
@@ -127,7 +135,7 @@ module.exports = function(grunt ) {
           }, {
             name: 'theme',
             message: 'Theme:',
-            default: 'bootstrap'
+            'default': 'bootstrap'
           }]
         };
 
@@ -145,15 +153,18 @@ module.exports = function(grunt ) {
         callback = callback || task.async();
 
         var pages = new DataStore(null, __dirname + '/xen/content/pages.json');
-        pages.save(__dirname + '/../content/pages.json')
+        pages.save(__dirname + '/../content/pages.json');
         
         var posts = new DataStore(null, __dirname + '/xen/content/posts.json');
-        posts.save(__dirname + '/../content/posts.json')
+        posts.save(__dirname + '/../content/posts.json');
 
         wipeDirectory('content/pages', function() {
           wipeDirectory('content/posts', function() {
             copyFiles('tasks/xen/content/pages', 'content/pages');
             copyFiles('tasks/xen/content/posts', 'content/posts');
+            if (callback) {
+              callback();
+            }
           });
         });
       }

@@ -45,10 +45,10 @@ PageController.prototype.after = function() {
     title: pageModel.title,
     last: true
   });
-  
+
   this.viewModel.setData({
     page: pageModel,
-    breadcrumbs: this.breadcrumbs
+    crumbs: this.breadcrumbs
   });
 
   this.viewModel.compile();

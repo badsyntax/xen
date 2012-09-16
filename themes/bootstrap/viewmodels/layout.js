@@ -29,4 +29,10 @@ LayoutViewModel.prototype.scripts = function() {
   }).render();
 };
 
+LayoutViewModel.prototype.breadcrumbs = function() {
+  return ViewModel.factory('fragments/breadcrumbs', {
+    breadcrumbs: this.getData('crumbs')
+  }).render();
+};
+
 module.exports = exports = LayoutViewModel;

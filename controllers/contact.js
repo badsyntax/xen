@@ -28,7 +28,7 @@ ContactController.prototype.actionPost = function() {
   var msg = null;
 
   if (errors) {
-    message = {
+    msg = {
       type: 'error',
       friendlytype: 'Error',
       content: 'Please correct the fields below.'
@@ -36,7 +36,7 @@ ContactController.prototype.actionPost = function() {
   } else {
     this.sendEmail(data);
     data = {};
-    message = {
+    msg = {
       type: 'success',
       friendlytype: 'Success',
       content: 'Message successfully sent.'

@@ -33,10 +33,7 @@ module.exports = function(grunt) {
         'tasks/**/*.js',
         'models/**/*.js', 
         'test/**/*.js', 
-        'public/js/App.js',
-        'public/js/App.Config.js',
-        'public/js/App.Util.js',
-        'public/js/Controllers/*.js'
+        'themes/*/public/js/*'
       ]
     },
     cssmin: {
