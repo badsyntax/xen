@@ -1,8 +1,4 @@
 var ViewModel = requireRoot('/lib/viewmodel');
-var DataStore = requireRoot('/lib/datastore');
-var PageModel = requireRoot('/models/page');
-var siteConfig = requireRoot('/config/site');
-var Assets = requireRoot('/lib/assets');
 
 function LayoutViewModel() {
   ViewModel.apply(this, arguments); 

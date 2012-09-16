@@ -23,7 +23,7 @@ App.Plugins.BackToTop.prototype.bindEvents = function() {
   }, this))
   .trigger('scroll');
 
-  setInterval($.proxy(this.onWindowScroll, this), 250);
+  setInterval($.proxy(this.onWindowScroll, this), 200);
 };
 
 App.Plugins.BackToTop.prototype.onWindowScroll = function() {
@@ -32,7 +32,7 @@ App.Plugins.BackToTop.prototype.onWindowScroll = function() {
     if ($(window).scrollTop() > 200) {
       if (!this.hasShown) {
         this.hasShown = true;
-        this.topElement.fadeIn(200);
+        this.topElement.fadeIn(100);
       }
     } else {
       if (this.hasShown) {
