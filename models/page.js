@@ -40,6 +40,8 @@ require('util').inherits(PageModel, BaseModel);
 
 PageModel.factory = function(uri, type) {
 
+  uri = uri.replace(/\?.*$/, ''); // remove query string
+
   var record = new DataStore(type || 'pages').where(function(page){
     return page.uri === uri;
   }).find()[0];

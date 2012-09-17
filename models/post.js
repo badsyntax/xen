@@ -1,7 +1,6 @@
 var PageModel = require('./page');
 var TagModel = require('./tag');
 
-
 function PostModel() {
 
   PageModel.apply(this, arguments);

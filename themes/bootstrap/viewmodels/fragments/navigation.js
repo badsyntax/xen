@@ -7,11 +7,14 @@ function NavigationViewModel() {
 }
 require('util').inherits(NavigationViewModel, ViewModel);
 
-NavigationViewModel.prototype.pages = function(uri) {
+NavigationViewModel.prototype.pages = function() {
+  
+  var pageUri = this.getData('page').uri;
+
   return new DataStore('pages').where(function(page){
     return !!page.showInNav;
   }).find().map(function(data){
-    data.active = (data.uri === uri);
+    data.active = (data.uri === pageUri);
     return new PageModel(data);
   });
 };

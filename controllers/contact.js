@@ -2,7 +2,6 @@ var Validator = require('../lib/validator');
 var PageController = require('./page');
 var nodemailer = require("nodemailer");
 var siteConfig = require('../config/site');
-var themeConfig = require('../themes/' + siteConfig.theme + '/config');
 
 function ContactController() { 
   PageController.apply(this, arguments);

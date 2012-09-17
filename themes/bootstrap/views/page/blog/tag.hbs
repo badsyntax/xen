@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row-fluid">
+    <div class="posts span9">
+      {{#posts}}
+        <div class="entry">
+          <h2>
+            <a href="{{url}}">{{title}}</a>
+          </h2>
+          <div class="body">
+            {{{body}}}
+            <hr />
+          </div>
+          <footer>
+            <section>
+              <i class="icon-calendar"></i> {{date}}
+              <span class="pull-right">
+                <i class="icon-comment"></i><a href="{{url}}#disqus_thread">0 Comments</a>
+              </span>
+            </section>
+            <section>
+              {{#tagModels}}
+                <a href="/blog/tag/{{name}}" class="tag label">{{name}}</a>
+              {{/tagModels}}
+            </section>
+          </footer>
+        </div>
+      {{/posts}}
+      {{{pagination}}}
+    </div>
+    <div class="span3">
+      <div id="sidebar">
+        <div class="well" style="padding:8px 0">
+          <ul class="nav nav-list">
+            <li class="nav-header">
+              Popular tags
+            </li>
+            {{#tags}}
+              {{^active}}
+                <li>
+              {{/active}}
+              {{#active}}
+                <li class="active">
+              {{/active}}
+              <a href="/blog/tag/{{name}}">{{name}}</a></li>
+            {{/tags}}
+          </ul>
+        </div>
+        <div class="well" style="padding:8px 0" id="latest-tweets">
+          <ul class="nav nav-list">
+            <li class="nav-header">
+              Latest tweets
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
