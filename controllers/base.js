@@ -1,14 +1,12 @@
-var DataStore = require('../lib/datastore');
 var ViewModel = require('../lib/viewmodel');
-var PageModel = require('../models/page');
 
 function BaseController(app, req, res) {
 
   this.app = app;
   this.req = req;
   this.res = res;
-  this.viewModel = {};
-  this.layoutView = 'layouts/page';
+
+  this.layoutView = 'layout';
 
   this.execute();
 }
@@ -28,7 +26,7 @@ BaseController.prototype.execute = function() {
 };
 
 BaseController.prototype.before = function(){
-  this.layout = ViewModel.factory('layout', {
+  this.layout = ViewModel.factory(this.layoutView, {
     app: this.app,
     req: this.req
   });

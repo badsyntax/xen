@@ -13,7 +13,7 @@ ScriptsViewModel.prototype.scripts = function() {
 };
 
 ScriptsViewModel.prototype.controller = function() {
-  var controller = this.view.data.route.controller;
+  var controller = this.getData('route').controller;
   return controller.charAt(0).toUpperCase() + controller.slice(1);
 };
 

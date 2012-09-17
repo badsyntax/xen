@@ -38,14 +38,14 @@ function PageModel() {
 
 require('util').inherits(PageModel, BaseModel);
 
-PageModel.factory = function(uri) {
+PageModel.factory = function(uri, type) {
 
-  var record = new DataStore('pages').where(function(page){
+  var record = new DataStore(type || 'pages').where(function(page){
     return page.uri === uri;
   }).find()[0];
 
   if (!record) {
-    return false;
+    throw new Error('Page record not found: ' + uri);
   }
 
   return new PageModel( record );

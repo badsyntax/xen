@@ -1,21 +1,20 @@
 var Blog = require('../lib/blog');
+var PostModel = require('../models/post');
 var PageController = require('./page');
 
 function PostController() { PageController.apply(this, arguments); }
 require('util').inherits(PostController, PageController);
 
-PostController.prototype.actionIndex = function() {
+PostController.prototype.actionIndex = function(){ 
 
-  var uri = this.req.url
-    .replace(/^\//, '')
-    .replace(/\?.*$/, '');
+  var uri = (
+       this.req.route.contentUri 
+    || this.req.url.replace('/', '')
+  ).replace(/\?.*$/, ''); // remove query string
 
-  this.page = (new Blog).getPost(uri);
-
-  // this.breadcrumbs.push({
-  //   url: '/blog',
-  //   title: 'Blog'
-  // });
+  this.layout.setData({
+    page: PostModel.factory(uri)
+  });
 };
 
 module.exports = PostController;

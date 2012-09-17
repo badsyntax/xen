@@ -3,22 +3,9 @@ var PageModel = requireRoot('/models/page');
 
 function LayoutViewModel() {
   ViewModel.apply(this, arguments);
-  this.setData({
-    layout: false,
-    page: this.getPage()
-  });
+  this.setData({ layout: false });
 }
 require('util').inherits(LayoutViewModel, ViewModel);
-
-LayoutViewModel.prototype.getPage = function() {
-
-  var uri = (
-       this.getData('req').route.contentUri 
-    || this.getData('req').url.replace('/', '')
-  ).replace(/\?.*$/, ''); // remove query string
-
-  return PageModel.factory(uri);
-};
 
 LayoutViewModel.prototype.navigation = function() {
   return ViewModel.factory('fragments/navigation', {
