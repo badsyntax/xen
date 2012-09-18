@@ -14,6 +14,6 @@ require('util').inherits(PostModel, PageModel);
 
 PostModel.factory = function(uri) {
   return PageModel.factory(uri, 'posts');
-}
+};
 
 module.exports = exports = PostModel;  
