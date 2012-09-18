@@ -1,4 +1,4 @@
-var BaseModel = require('./base');
+var BaseModel = require('../lib/model');
 
 function TagModel() {
   BaseModel.apply(this, arguments);

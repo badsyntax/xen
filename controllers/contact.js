@@ -12,7 +12,6 @@ ContactController.prototype.actionIndex = function() {
 
   PageController.prototype.actionIndex.apply(this, arguments);
 
-
   if (this.req.method === 'POST') {
 
     var data = {
@@ -47,7 +46,6 @@ ContactController.prototype.actionIndex = function() {
       };
 
       this.sendEmail(data);
-
       //this.res.redirect(this.req.url);
     }
 

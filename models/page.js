@@ -1,4 +1,4 @@
-var BaseModel = require('./base');
+var BaseModel = require('../lib/model');
 var Globalize = require('../lib/globalize');
 var DataStore = require('../lib/datastore');
 
