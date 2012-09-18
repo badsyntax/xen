@@ -8,53 +8,67 @@ function ContactController() {
 }
 require('util').inherits(ContactController, PageController);
 
-ContactController.prototype.actionPost = function() {
+ContactController.prototype.actionIndex = function() {
 
-  var data = {
-    name: this.req.param('name'),
-    email: this.req.param('email'),
-    message: this.req.param('message')
-  };
+  PageController.prototype.actionIndex.apply(this, arguments);
 
-  var validator = new Validator(data);
 
-  validator.rule('name', 'notEmpty', '- must not be empty');
-  validator.rule('email', 'notEmpty', '- must not be empty');
-  validator.rule('email', 'isEmail', '- must be a valid email');
-  validator.rule('message', 'notEmpty', '- must not be empty');
+  if (this.req.method === 'POST') {
 
-  var errors = validator.check();
-  var msg = null;
-
-  if (errors) {
-    msg = {
-      type: 'error',
-      friendlytype: 'Error',
-      content: 'Please correct the fields below.'
+    var data = {
+      name: this.req.param('name'),
+      email: this.req.param('email'),
+      message: this.req.param('message')
     };
-  } else {
-    this.sendEmail(data);
-    data = {};
-    msg = {
-      type: 'success',
-      friendlytype: 'Success',
-      content: 'Message successfully sent.'
-    };
+
+    var validator = new Validator(data);
+
+    validator.rule('name', 'notEmpty', '- must not be empty');
+    validator.rule('email', 'notEmpty', '- must not be empty');
+    validator.rule('email', 'isEmail', '- must be a valid email');
+    validator.rule('message', 'notEmpty', '- must not be empty');
+
+    var errors = validator.check();
+    var message = null;
+
+    if (errors) {
+      message = {
+        type: 'error',
+        friendlytype: 'Error',
+        content: 'Please correct the fields below.'
+      };
+    } else {
+
+      data = {};
+      message = {
+        type: 'success',
+        friendlytype: 'Success',
+        content: 'Message successfully sent.'
+      };
+
+      this.sendEmail(data);
+
+      //this.res.redirect(this.req.url);
+    }
+
+    this.layout.setData({
+      message: message,
+      errors: errors,
+      data: data
+    });
   }
-
-  this.layout.setData({
-    message: msg,
-    errors: errors,
-    data: data
-  });
 };
 
 ContactController.prototype.sendEmail = function(data) {
 
   var transport = nodemailer.createTransport("Sendmail");
-
   var mailOptions = siteConfig.email;
-  mailOptions.text = 'From: ' + data.name + "\rEmail: " + data.email + "\rMessage: " + data.message;
+  
+  mailOptions.text = [
+    'From: '      + data.name,
+    "\rEmail: "   + data.email,
+    "\rMessage: " + data.message
+  ].join('');
 
   transport.sendMail(mailOptions);
 };

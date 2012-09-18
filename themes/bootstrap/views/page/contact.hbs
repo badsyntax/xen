@@ -15,8 +15,8 @@
         <form class="form-vertical contact-form" method="post" action="/contact">
           <fieldset>
             {{#errors}}
-              {{#errors.name}}<div class="control-group error">{{/errors.name}}
-              {{^errors.name}}<div class="control-group">{{/errors.name}}
+              {{#this.name}}<div class="control-group error">{{/this.name}}
+              {{^this.name}}<div class="control-group">{{/this.name}}
             {{/errors}}
             {{^errors}}<div class="control-group">{{/errors}}
               <label class="control-label" for="name">Name {{errors.name}}</label>
@@ -25,8 +25,8 @@
               </div>
             </div>
             {{#errors}}
-              {{#errors.email}}<div class="control-group error">{{/errors.email}}
-              {{^errors.email}}<div class="control-group">{{/errors.email}}
+              {{#this.email}}<div class="control-group error">{{/this.email}}
+              {{^this.email}}<div class="control-group">{{/this.email}}
             {{/errors}}
             {{^errors}}<div class="control-group">{{/errors}}
               <label class="control-label" for="email">Email {{errors.email}}</label>
@@ -35,8 +35,8 @@
               </div>
             </div>
             {{#errors}}
-              {{#errors.message}}<div class="control-group error">{{/errors.message}}
-              {{^errors.message}}<div class="control-group">{{/errors.message}}
+              {{#this.message}}<div class="control-group error">{{/this.message}}
+              {{^this.message}}<div class="control-group">{{/this.message}}
             {{/errors}}
             {{^errors}}<div class="control-group">{{/errors}}
               <label class="control-label" for="message">Message {{errors.message}}</label>

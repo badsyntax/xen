@@ -5,7 +5,6 @@ var path = require('path');
 var app = express();
 var config = require('./config/site');
 
-
 app.configure(function(){
 
   app.set('port', process.env.PORT || 3000);
