@@ -1,5 +1,5 @@
 var ViewModel = requireRoot('/lib/viewmodel');
-var PageModel = requireRoot('/models/page');
+var PageModel = requireApp('/models/page');
 
 function LayoutViewModel() {
   ViewModel.apply(this, arguments);

@@ -1,5 +1,5 @@
 var ViewModel = requireRoot('/lib/viewmodel');
-var siteConfig = requireRoot('/config/site');
+var siteConfig = requireApp('/config/site');
 var Assets = requireRoot('/lib/assets');
 
 function ScriptsViewModel(data) {

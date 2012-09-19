@@ -9,7 +9,7 @@ PostController.prototype.actionIndex = function(){
   var uri = this.req.route.contentUri || this.req.url.replace('/', '');
   var page = PostModel.factory(uri);
 
-  require('../lib/breadcrumbs').set([{
+  requireRoot('/lib/breadcrumbs').set([{
     url: '/',
     title: 'Home'
   }, {

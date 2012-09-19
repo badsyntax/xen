@@ -1,6 +1,6 @@
-var BaseModel = require('../lib/model');
-var Globalize = require('../lib/globalize');
-var DataStore = require('../lib/datastore');
+var BaseModel = requireRoot('/lib/model');
+var Globalize = requireRoot('/lib/globalize');
+var DataStore = requireRoot('/lib/datastore');
 
 Globalize.culture('en-GB');
 

@@ -1,5 +1,5 @@
 var DataStore = requireRoot('/lib/datastore');
-var PageModel = requireRoot('/models/page');
+var PageModel = requireApp('/models/page');
 var ViewModel = requireRoot('/lib/viewmodel');
 
 function NavigationViewModel() {
@@ -19,6 +19,6 @@ NavigationViewModel.prototype.pages = function() {
   });
 };
 
-NavigationViewModel.prototype.siteConfig = requireRoot('/config/site');
+NavigationViewModel.prototype.siteConfig = requireApp('/config/site');
 
 module.exports = exports = NavigationViewModel;

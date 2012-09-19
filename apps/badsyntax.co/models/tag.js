@@ -1,4 +1,4 @@
-var BaseModel = require('../lib/model');
+var BaseModel = requireRoot('/lib/model');
 
 function TagModel() {
   BaseModel.apply(this, arguments);
