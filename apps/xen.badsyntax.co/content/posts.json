@@ -1,0 +1,25 @@
+[
+  {
+    "uri": "post/first-post",
+    "title": "First Post",
+    "view": "page/post",
+    "contentPath": "posts/first-post.html",
+    "tags": [
+      "interesting"
+    ],
+    "dateCreated": 1344164251777
+  },
+  {
+    "title": "Test post 2",
+    "description": "",
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "view": "page/post",
+    "dateCreated": 1347918822579,
+    "showInNav": true,
+    "uri": "post/test-post-2",
+    "contentPath": "posts/test-post-2.html"
+  }
+]

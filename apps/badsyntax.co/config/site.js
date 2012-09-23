@@ -2,9 +2,9 @@ module.exports = {
   name: 'Site name',
   theme: 'bootstrap',  
   email: {
-      from: 'root@example.com',
-      to:'youremail@example.com',
-      subject: "New message!"
+    from: 'root@example.com',
+    to:'youremail@example.com',
+    subject: "New message!"
   },
   disqus: {
     disqus_developer: true,

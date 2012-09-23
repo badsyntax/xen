@@ -9,7 +9,6 @@ app.set('port', process.env.PORT || 3000);
 
 /* Vhosts */
 app.use(express.vhost('badsyntax.co', require('./apps/badsyntax.co')));
-//app.use(express.vhost('xen.badsyntax.co', require('./apps/xen.badsyntax.co')));
 
 app.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port') + ' in ' + app.get('env') + ' mode');

@@ -47,7 +47,8 @@ PageModel.factory = function(uri, type) {
   }).find()[0];
 
   if (!record) {
-    throw new Error('Page record not found: ' + uri);
+    console.error('Page record not found: ' + uri);
+    return false;
   }
 
   return new PageModel( record );
