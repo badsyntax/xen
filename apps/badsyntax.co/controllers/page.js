@@ -1,5 +1,5 @@
 var PageModel = require('../models/page');
-var BaseController = requireRoot('/lib/controller');
+var BaseController = require('./base');
 
 function PageController() { 
   BaseController.apply(this, arguments); 
