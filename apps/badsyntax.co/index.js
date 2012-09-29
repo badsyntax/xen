@@ -10,6 +10,7 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var config = require('./config/site');
+var bootstrap = requireRoot('/lib/bootstrap');
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3001);
@@ -35,6 +36,6 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-requireRoot('/lib/route')(app);
+bootstrap(app);
 
 module.exports = app;

@@ -7,18 +7,19 @@ function ScriptsViewModel(data) {
 }
 require('util').inherits(ScriptsViewModel, ViewModel);
 
-ScriptsViewModel.prototype.scripts = function() {
+ScriptsViewModel.prototype.scripts = function(callback) {
   var assets = new Assets(this.getData('app'));  
-  return assets.render('script');
+  callback(assets.render('script'));
 };
 
-ScriptsViewModel.prototype.controller = function() {
+ScriptsViewModel.prototype.controller = function(callback) {
   var controller = this.getData('route').controller;
-  return controller.charAt(0).toUpperCase() + controller.slice(1);
+  controller = controller.charAt(0).toUpperCase() + controller.slice(1);
+  callback(controller);
 };
 
-ScriptsViewModel.prototype.siteConfigJSON = function() {
-  return JSON.stringify(siteConfig);
+ScriptsViewModel.prototype.siteConfigJSON = function(callback) {
+  callback(JSON.stringify(siteConfig));
 };
 
 module.exports = exports = ScriptsViewModel;

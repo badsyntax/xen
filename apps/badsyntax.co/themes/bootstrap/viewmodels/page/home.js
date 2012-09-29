@@ -6,8 +6,9 @@ function Home(data) {
 }
 require('util').inherits(Home, ViewModel);
 
-Home.prototype.posts = function() {
-  return new Blog().getPosts(1, 5);
+Home.prototype.posts = function(callback) {
+  var posts = new Blog().getPosts(1, 5);
+  callback(posts);
 };
 
 module.exports = exports = Home;

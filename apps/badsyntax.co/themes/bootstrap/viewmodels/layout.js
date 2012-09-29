@@ -7,28 +7,29 @@ function LayoutViewModel() {
 }
 require('util').inherits(LayoutViewModel, ViewModel);
 
-LayoutViewModel.prototype.navigation = function() {
-  return ViewModel.factory('fragments/navigation', {
+LayoutViewModel.prototype.navigation = function(callback) {
+  ViewModel.factory('fragments/navigation', {
     page: this.getData('page')
-  }).render();
+  }).render(callback);
 };
 
-LayoutViewModel.prototype.head = function() {
-  return ViewModel.factory('fragments/head', { 
+LayoutViewModel.prototype.head = function(callback) {
+  ViewModel.factory('fragments/head', { 
     app: this.getData('app'),
     page: this.getData('page')
-  }).render();
+  }).render(callback);
 };
 
-LayoutViewModel.prototype.scripts = function() {
-  return ViewModel.factory('fragments/scripts', {
+LayoutViewModel.prototype.scripts = function(callback) {
+  ViewModel.factory('fragments/scripts', {
     app: this.getData('app'),
     route: this.getData('req').route
-  }).render();
+  }).render(callback);
 };
 
-LayoutViewModel.prototype.body = function() {
-  return ViewModel.factory(this.getData('page').view, this.getData()).render();
+LayoutViewModel.prototype.body = function(callback) {
+  ViewModel.factory(this.getData('page').view, this.getData())
+  .render(callback);
 };
 
 module.exports = exports = LayoutViewModel;

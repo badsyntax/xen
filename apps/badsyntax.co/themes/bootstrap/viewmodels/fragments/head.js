@@ -7,9 +7,9 @@ function HeadViewModel(data) {
 }
 require('util').inherits(HeadViewModel, ViewModel);
 
-HeadViewModel.prototype.styles = function() {
+HeadViewModel.prototype.styles = function(callback) {
   var assets = new Assets(this.getData('app'));  
-  return assets.render('style');
+  callback(assets.render('style'));
 };
 
 HeadViewModel.prototype.siteConfig = siteConfig;
