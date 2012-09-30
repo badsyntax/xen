@@ -31,11 +31,11 @@ LayoutViewModel.prototype.scripts = function(callback) {
 };
 
 LayoutViewModel.prototype.body = function(callback) {
-  var cacheKey = 'body/' + this.getData('req').url;
-  Cache.callback(cacheKey, callback, function(setCache) {
+  var req = this.getData('req');
+  Cache.callback('body/' + req.url, callback, function(setCache) {
     ViewModel.factory(this.getData('page').view, this.getData())
     .render(setCache);
-  }.bind(this));
+  }.bind(this), req.method !== 'POST');
 };
 
 module.exports = exports = LayoutViewModel;

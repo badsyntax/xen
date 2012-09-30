@@ -11,8 +11,9 @@
     "grunt-yui-compressor": "0.1.1",
     "express": "3.0",
     "hbs": "1.0.2",
-    "nodemailer": "0.3.22",
-    "memcached": "0.0.12"
+    "redis": "0.8.1",
+    "memcached": "0.0.12",
+    "nodemailer": "0.3.22"
   },
   "main": "tasks/xen",
   "repository" : {
