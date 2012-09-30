@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   assets: {
-    script: [
+    scripts: [
       'js/lib/jquery.js',
       'js/lib/underscore.js',
       'js/lib/prettify.js',
@@ -23,10 +23,16 @@ module.exports = {
       'js/Controllers/App.Controllers.Home.js',     
       'js/Controllers/App.Controllers.Post.js'     
     ],
-    style: [
+    styles: [
       'css/bootstrap.css',
       'css/prettify.css',
       'css/style.css'
-    ]
+    ],
+    login: {
+      styles: [
+        'css/bootstrap.css',
+        'css/style.css'
+      ]
+    }
   }
 };

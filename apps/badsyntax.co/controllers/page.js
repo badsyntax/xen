@@ -2,6 +2,7 @@ var PageModel = require('../models/page');
 var BaseController = require('./base');
 
 function PageController() { 
+  this.layoutView = 'layouts/site';
   BaseController.apply(this, arguments); 
 }
 

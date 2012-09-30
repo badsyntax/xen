@@ -9,7 +9,7 @@ require('util').inherits(ScriptsViewModel, ViewModel);
 
 ScriptsViewModel.prototype.scripts = function(callback) {
   var assets = new Assets(this.getData('app'));  
-  callback(assets.render('script'));
+  callback(assets.render('script', 'scripts'));
 };
 
 ScriptsViewModel.prototype.controller = function(callback) {
