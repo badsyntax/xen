@@ -24,7 +24,8 @@ LoginLayoutViewModel.prototype.scripts = function(callback) {
 };
 
 LoginLayoutViewModel.prototype.body = function(callback) {
-  callback();
+  ViewModel.factory('page/login', {    
+  }).render(callback);
 };
 
 module.exports = exports = LoginLayoutViewModel;
