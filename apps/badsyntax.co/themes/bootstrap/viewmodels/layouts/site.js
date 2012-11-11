@@ -1,7 +1,7 @@
 var LayoutViewModel = require('../layout');
-var ViewModel = requireRoot('/lib/viewmodel');
+var ViewModel = requireRoot('/xen/viewmodel');
 var PageModel = requireApp('/models/page');
-var Cache = requireRoot('/lib/cache');
+var Cache = requireRoot('/xen/cache');
 
 function SiteLayoutViewModel() {
   LayoutViewModel.apply(this, arguments);

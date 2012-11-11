@@ -1,6 +1,6 @@
-var ViewModel = requireRoot('/lib/viewmodel');
-var Blog = requireRoot('/lib/blog');
-var View = requireRoot('/lib/view');
+var ViewModel = requireRoot('/xen/viewmodel');
+var Blog = requireRoot('/xen/blog');
+var View = requireRoot('/xen/view');
 
 function BlogViewModel(data) {
   ViewModel.apply(this, arguments); 

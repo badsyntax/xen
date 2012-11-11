@@ -1,7 +1,7 @@
 module.exports = exports = (function() {
 
   var config = requireApp('/config/cache');
-  var Cache = requireRoot('/lib/cache/drivers/' + config.driver);
+  var Cache = requireRoot('/xen/cache/drivers/' + config.driver);
 
   Cache.callback = function(key, callback, getData, cacheOnCondition) {
     if (cacheOnCondition === undefined) {

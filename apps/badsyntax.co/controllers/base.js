@@ -1,5 +1,5 @@
-var Controller = requireRoot('/lib/controller');
-var Cache = requireRoot('/lib/cache');
+var Controller = requireRoot('/xen/controller');
+var Cache = requireRoot('/xen/cache');
 
 function BaseController(app, req, res) { 
 

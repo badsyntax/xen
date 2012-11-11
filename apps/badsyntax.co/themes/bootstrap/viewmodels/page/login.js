@@ -1,4 +1,4 @@
-var ViewModel = requireRoot('/lib/viewmodel');
+var ViewModel = requireRoot('/xen/viewmodel');
 
 function Login(data) {
   ViewModel.apply(this, arguments); 

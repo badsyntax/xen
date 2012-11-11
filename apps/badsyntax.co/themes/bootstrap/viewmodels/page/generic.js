@@ -1,5 +1,5 @@
-var ViewModel = requireRoot('/lib/viewmodel');
-var Blog = requireRoot('/lib/blog');
+var ViewModel = requireRoot('/xen/viewmodel');
+var Blog = requireRoot('/xen/blog');
 
 function Generic(data) {
   ViewModel.apply(this, arguments); 

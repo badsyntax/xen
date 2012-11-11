@@ -8,7 +8,7 @@ PostController.prototype.actionIndex = function(){
 
   var uri = this.req.route.contentUri || this.req.url.replace('/', '');
   var page = PostModel.factory(uri);
-  var breadcrumbs = requireRoot('/lib/breadcrumbs');
+  var breadcrumbs = requireRoot('/xen/breadcrumbs');
 
   breadcrumbs.set([{
     url: '/',

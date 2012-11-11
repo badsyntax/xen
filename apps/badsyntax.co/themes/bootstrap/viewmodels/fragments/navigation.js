@@ -1,7 +1,7 @@
-var DataStore = requireRoot('/lib/datastore');
+var DataStore = requireRoot('/xen/datastore');
 var PageModel = requireApp('/models/page');
-var ViewModel = requireRoot('/lib/viewmodel');
-var Cache = requireRoot('/lib/cache');
+var ViewModel = requireRoot('/xen/viewmodel');
+var Cache = requireRoot('/xen/cache');
 
 function NavigationViewModel() {
   ViewModel.apply(this, arguments); 

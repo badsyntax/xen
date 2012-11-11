@@ -1,4 +1,4 @@
-var ViewModel = require('../lib/viewmodel');
+var ViewModel = requireRoot('/xen/viewmodel');
 
 function Controller(app, req, res) {
   this.app = app;

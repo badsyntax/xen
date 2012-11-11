@@ -1,4 +1,4 @@
-var Validator = requireRoot('/lib/validator');
+var Validator = requireRoot('/xen/validator');
 var PageController = require('./page');
 var nodemailer = require("nodemailer");
 var siteConfig = require('../config/site');

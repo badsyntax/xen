@@ -1,7 +1,7 @@
 var hbs = require('hbs');
 var fs = require('fs');
 var siteConfig = requireApp('/config/site');
-var Cache = requireRoot('/lib/cache');
+var Cache = requireRoot('/xen/cache');
 
 function View(path, data, theme) {
   this.path = path;
@@ -47,7 +47,9 @@ View.prototype.renderHtml = function(html, callback) {
     data[key] = viewData[key];
   }
 
-  callback(template(data));
+  if (callback) {
+    callback(template(data));
+  }
 };
 
 View.prototype.render = function(callback) {

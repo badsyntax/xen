@@ -1,5 +1,5 @@
 var BlogViewModel = require('../blog');
-var Blog = requireRoot('/lib/blog');
+var Blog = requireRoot('/xen/blog');
 
 function BlogTag(data) {
   BlogViewModel.apply(this, arguments); 

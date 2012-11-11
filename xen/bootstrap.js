@@ -1,6 +1,7 @@
 module.exports = (function() {
 
-  var Cache = requireRoot('/lib/cache');
+  var Cache = requireRoot('/xen/cache');
+  var FileSystem = requireRoot('/xen/filesystem');
   var appRedirects = requireApp('/routes/redirects');
   var appRoutes = requireApp('/routes/routes');
   var appConfig = requireApp('/config/site');
@@ -44,7 +45,7 @@ module.exports = (function() {
 
     formatBody: function(body) {
       if (this.config.beautifyHtml.enabled) {
-        body = requireRoot('/lib/stylehtml')(String(body), this.config.beautifyHtml.config);
+        body = requireRoot('/xen/stylehtml')(String(body), this.config.beautifyHtml.config);
       }
       return body;
     },
@@ -60,33 +61,10 @@ module.exports = (function() {
     },
 
     getControllersOnFileSystem: function() {
-      
-      var controllers = [];
-      var fs = require('fs');
-      var controllersPath = appDir() + '/controllers';
-      
-      (function readdirSyncRecursive(currentPath) {
-        
-        var files = fs.readdirSync(currentPath);
-        var relativePath = currentPath.replace(controllersPath, '').replace(/^\//, '');
-        relativePath += relativePath ? '/' : '';
-        
-        for (var i in files) {
-          var currentFile = currentPath + '/' + files[i];
-          var stats = fs.statSync(currentFile);
-          if (stats.isFile()) {
-            controllers.push(relativePath + files[i]);
-          }
-          else if (stats.isDirectory()) {
-            readdirSyncRecursive(currentFile);  
-          }
-        }
-      })(controllersPath);
-
-      return controllers;
+      return FileSystem.listFiles(appDir() + '/controllers');
     },
 
-    getRouteFromRequest: function(route, req) {
+    getControllerAndACtionFromRoute: function(route, req) {
 
       if (route.controller && route.directory) {
         route.controller = route.directory + '/' + route.controller;
@@ -105,9 +83,9 @@ module.exports = (function() {
 
     routeUrlToController: function(route, req, res) {
 
-      var defaults = this.cloneObject(route.defaults);
+      var defaultRoot = this.cloneObject(route.defaults);
 
-      req.route = this.getRouteFromRequest(defaults, req);
+      req.route = this.getControllerAndACtionFromRequest(defaultRoot, req);
 
       Cache.get('controllers', function(controllers){
 
@@ -123,6 +101,7 @@ module.exports = (function() {
           : defaultController;
 
         var Controller = requireApp('/controllers/' + req.route.controller);
+        
         new Controller(this.app, req, res);
 
       }.bind(this));

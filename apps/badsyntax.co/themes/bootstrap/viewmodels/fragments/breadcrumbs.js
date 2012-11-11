@@ -1,4 +1,4 @@
-var ViewModel = requireRoot('/lib/viewmodel');
+var ViewModel = requireRoot('/xen/viewmodel');
 
 function BreadCrumbs(data) {
   ViewModel.apply(this, arguments); 
